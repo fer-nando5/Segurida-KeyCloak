@@ -1,0 +1,6 @@
+@System.Eclaim.API_HostAddress = http://localhost:5059
+
+GET {{System.Eclaim.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

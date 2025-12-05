@@ -1,0 +1,21 @@
+﻿.welcome-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;  
+    text-align: center;
+    background-color: #f8f9fa;  
+}
+
+.welcome-image {
+    width: 200px;  
+    height: auto;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #333;
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

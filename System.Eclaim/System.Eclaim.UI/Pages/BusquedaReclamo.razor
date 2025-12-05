@@ -1,0 +1,46 @@
+﻿@page "/Busqueda-Reclamo"
+@attribute [Authorize]
+
+<h2>Búsqueda de Reclamo</h2>
+
+<div class="busqueda-container">
+    <div class="busqueda-form">
+        <label for="numeroReclamo">Número de Reclamo:</label>
+        <input type="text" id="numeroReclamo" class="input-field"
+               placeholder="Ingrese número de reclamo"
+               @bind="NumeroReclamo" />
+
+        <button class="btn-buscar" @onclick="onBuscarReclamo">
+            <i class="bi bi-search"></i> Buscar
+        </button>
+    </div>
+
+    @if (ReclamoResponse is not null)
+    {
+        <div class="resultado-container">
+            <h3>Detalles del Reclamo</h3>
+            <div class="detalle-item">
+                <strong>Número:</strong> @ReclamoResponse.NumeroReclamo
+            </div>
+            <div class="detalle-item">
+                <strong>Descripción:</strong> @ReclamoResponse.Descripcion
+            </div>
+            <div class="detalle-item">
+                <strong>Fecha Reclamo:</strong> @ReclamoResponse.FechaReclamo.ToShortDateString()
+            </div>
+            <div class="detalle-item">
+                <strong>Usuario Registro:</strong> @ReclamoResponse.UsuarioRegistro
+            </div>
+        </div>
+    }
+    else if (BusquedaRealizada && ReclamoResponse is null)
+    {
+        <div class="resultado-container sin-resultados">
+            <p>No se encontró ningún reclamo con el número <strong>@NumeroReclamo</strong>.</p>
+        </div>
+    }
+</div>
+
+@code {
+
+}

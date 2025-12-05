@@ -1,0 +1,44 @@
+﻿@page "/registra-reclamo"
+@attribute [Authorize]
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IJSRuntime JS
+
+<EditForm Model="ReclamoRequest" OnValidSubmit="OnInsertaReclamo">
+    <h2>Registro Reclamo</h2>
+
+    <input type="text" class="input-field" placeholder="Número de reclamo" @bind="@numeroReclamo" readonly />
+    <input type="text" class="input-field" placeholder="Ingrese descripción" @bind="ReclamoRequest.Descripcion" readonly="@IsReadOnly" />
+    <input type="date" class="date-field" @bind="ReclamoRequest.FechaReclamo" readonly="@IsReadOnly" />
+
+    <div class="form-group mb-3">
+        <div id="cap-container"></div>
+    </div>
+
+    <div>
+        <button type="submit" class="@BotonClase" disabled="@IsButtonDisabled">
+            <i class="bi bi-check-circle"></i> Registrar
+        </button>
+    </div>
+</EditForm>
+
+@code {
+
+    private static string? _lastToken;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("CAP.init", new { element = "#cap-container" });
+        }
+    }
+
+
+    [JSInvokable("SetCaptchaToken")]
+    public static void SetCaptchaToken(string token)
+    {
+        _lastToken = token;
+        Console.WriteLine($"Token recibido por CAP: {token}");
+    }
+}

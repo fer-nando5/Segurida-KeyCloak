@@ -1,0 +1,51 @@
+﻿@* @using System.Eclaim.UI.Services *@
+@using Blazored.Toast.Services
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider Auth
+@inject NavigationManager Navegador
+@* @inject IToastService ToastService *@
+
+@inherits LayoutComponentBase
+<BlazoredToasts Position="ToastPosition.BottomRight"/>
+
+
+
+<div class="layout">
+    <div class="sidebar">
+        <div class="logo">
+            <h3></h3>
+        </div>
+
+        <NavMenu />
+    </div>
+
+    <div class="main">
+        <div class="top-row" @onclick="CerrarSesion">
+            <a href="">Logout</a>
+        </div>
+
+        <div class="content">
+            @Body
+        </div>
+    </div>
+</div>
+
+
+@code {
+   
+    public async Task CerrarSesion()
+    {
+        // try
+        // {
+        //     var authService = (AuthenticationService)Auth;
+        //     await authService.Logout();
+        //     Navegador.NavigateTo("authentication/login");
+        // }
+        // catch (Exception ex)
+        // {
+        //     Console.WriteLine($"Error al cerrar sesión: {ex.Message}");
+        //     ToastService.ShowError("Ocurrió un error inesperado al cerrar sesión.");
+        // }
+    }
+}
+
